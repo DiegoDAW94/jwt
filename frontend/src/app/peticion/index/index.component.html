@@ -1,8 +1,14 @@
-<div class="container">
+<div class="container mt-5">
   <h1>Lista de Peticiones</h1>
-  <ul class="list-group">
-    <li *ngFor="let peticion of peticiones" class="list-group-item">
-      <a [routerLink]="['/peticiones/view', peticion.id]">{{ peticion.titulo }}</a> - {{ peticion.descripcion }}
-    </li>
-  </ul>
+  <div class="row">
+    <div class="col-md-4" *ngFor="let peticion of peticiones">
+      <div class="card mb-4" style="border-radius: 10px;">
+        <div class="card-body">
+          <h5 class="card-title">{{ peticion.titulo }}</h5>
+          <p class="card-text">{{ peticion.descripcion }}</p>
+          <a [routerLink]="['/peticiones/view', peticion.id]" class="btn btn-danger" style="border-radius: 10px;">Ver más</a>
+        </div>
+      </div>
+    </div>
+  </div>
 </div>

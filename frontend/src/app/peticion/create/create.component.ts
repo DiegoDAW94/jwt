@@ -1,8 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { PeticionService } from '../peticion.service';
-import { Peticion } from '../peticion';
-import { Form, FormControl, FormGroup, Validators } from '@angular/forms';
 
 @Component({
   selector: 'app-create',
@@ -10,27 +9,27 @@ import { Form, FormControl, FormGroup, Validators } from '@angular/forms';
   styleUrls: ['./create.component.css']
 })
 export class CreateComponent implements OnInit {
-  form!: FormGroup;
+  createForm: FormGroup;
 
   constructor(
-    public peticionService: PeticionService,
+    private fb: FormBuilder,
+    private peticionService: PeticionService,
     private router: Router
-  ) {}
-
-  ngOnInit(): void {
-    this.form = new FormGroup({
-      titulo: new FormControl('', Validators.required),
-      descripcion: new FormControl('', Validators.required),
-      destinatario: new FormControl('', Validators.required),
-      categoria_id: new FormControl('', Validators.required),
+  ) {
+    this.createForm = this.fb.group({
+      titulo: ['', Validators.required],
+      descripcion: ['', Validators.required],
+      destinatario: ['', Validators.required],
+      categoria_id: ['', Validators.required]
     });
   }
 
-  submit(): void {
-    if (this.form.valid) {
-      this.peticionService.create(this.form.value).subscribe((res: any) => {
-        console.log('Peticion created successfully!');
-        this.router.navigateByUrl('peticion/index');
+  ngOnInit(): void {}
+
+  onSubmit(): void {
+    if (this.createForm.valid) {
+      this.peticionService.create(this.createForm.value).subscribe(() => {
+        this.router.navigate(['/peticiones']);
       });
     }
   }

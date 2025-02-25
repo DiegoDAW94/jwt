@@ -1,6 +1,9 @@
 import { TestBed } from '@angular/core/testing';
 import { RouterTestingModule } from '@angular/router/testing';
 import { AppComponent } from './app.component';
+import { SigninComponent } from './components/signin/signin.component';
+import { SignupComponent } from './components/signup/signup.component';
+import { UserProfileComponent } from './components/user-profile/user-profile.component';
 
 describe('AppComponent', () => {
   beforeEach(async () => {
@@ -9,7 +12,10 @@ describe('AppComponent', () => {
         RouterTestingModule
       ],
       declarations: [
-        AppComponent
+        AppComponent,    // Asegúrate de incluir todos los componentes necesarios
+        SigninComponent,
+        SignupComponent,
+        UserProfileComponent
       ],
     }).compileComponents();
   });
@@ -23,7 +29,7 @@ describe('AppComponent', () => {
   it(`should have as title 'frontend'`, () => {
     const fixture = TestBed.createComponent(AppComponent);
     const app = fixture.componentInstance;
-    expect(app.title).toEqual('frontend');
+    expect(app.title).toEqual('frontend'); 
   });
 
   it('should render title', () => {

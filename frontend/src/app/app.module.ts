@@ -8,12 +8,9 @@ import { UserProfileComponent } from './components/user-profile/user-profile.com
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { ReactiveFormsModule, FormsModule } from '@angular/forms';
 import { AuthInterceptor } from './shared/auth-interceptor.service';
-import { EditComponent } from './peticion/edit/edit.component';
-import { IndexComponent } from './peticion/index/index.component';
-import { ViewComponent } from './peticion/view/view.component';
-import { PublicLayoutComponent } from './layouts/public-layout/public-layout.component';
+
+import { PeticionModule } from './peticion/peticion.module';
 import { NavigationComponent } from './layouts/navigation/navigation.component';
-import { AuthLayoutComponent } from './layouts/auth-layout/auth-layout.component';
 import { HomeComponent } from './pages/home/home.component';
 
 @NgModule({
@@ -22,17 +19,16 @@ import { HomeComponent } from './pages/home/home.component';
     SigninComponent,
     SignupComponent,
     UserProfileComponent,
-    PublicLayoutComponent,
-    NavigationComponent,
-    AuthLayoutComponent,
-    HomeComponent,  
+    HomeComponent,
+    NavigationComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     HttpClientModule,
     ReactiveFormsModule,
-    FormsModule
+    FormsModule,
+    PeticionModule,
   ],
   providers: [
     {

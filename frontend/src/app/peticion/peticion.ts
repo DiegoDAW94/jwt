@@ -3,9 +3,14 @@ export interface Peticion {
   titulo: string;
   descripcion: string;
   destinatario: string;
+  categoria_id?: number;
   firmantes?: number;
   estado?: string;
-  user_id?: number;
-  categoria_id: number;
-  createdAt?: Date;
+  categoria?: {
+    nombre: string;
+  };
+  user?: {
+    name: string;
+  };
+  user_id?: number; // Añadir esta propiedad
 }

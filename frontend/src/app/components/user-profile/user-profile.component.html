@@ -1,13 +1,13 @@
-<div class="container">
-    <div class="card inner-main">
-    <div class="card-header">
-    User Profile
+
+
+<div class="auth-wrapper d-flex justify-content-center align-items-center vh-100">
+    <div class="card" style="width: 30rem; border-radius: 10px;">
+        <div class="card-header">
+            <h3>User Profile</h3>
+        </div>
+        <div class="card-body">
+            <p class="card-text">Name: <strong>{{UserProfile?.name}}</strong></p>
+            <p class="card-text">Email: <strong>{{UserProfile?.email}}</strong></p>
+        </div>
     </div>
-    <div class="card-body">
-    <p class="card-text">Name:
-    <strong>{{UserProfile?.name}}</strong></p>
-    <p class="card-text">Email:
-    <strong>{{UserProfile?.email}}</strong></p>
-    </div>
-    </div>
-    </div>
+  </div>

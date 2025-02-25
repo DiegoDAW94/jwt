@@ -1,7 +1,7 @@
 <div class="container-fluid h-100">
     <div class="row w-100">
         <div class="col">
-            <div id="demo" class="carousel slide" data-bs-ride="carousel">
+            <div id="demo" class="carousel slide carousel-fade" data-bs-ride="carousel">
                 <!-- Indicators/Dots -->
                 <div class="carousel-indicators">
                     <button type="button" data-bs-target="#demo" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
@@ -15,8 +15,8 @@
                         <div class="carousel-caption">
                             <h3>La mayor plataforma de peticiones del mundo</h3>
                             <p>485.044.407 personas que pasan a la acción</p>
-                            <div class="text-center mt-5">
-                                <a type="button" class="btn btn-danger" routerLink="/peticiones/create">Inicia una petición</a>
+                            <div class="text-center mt-5" *ngIf="loggedIn">
+                                <button type="button" class="btn btn-danger" (click)="startPetition()">Inicia una petición</button>
                             </div>
                         </div>
                     </div>
@@ -40,6 +40,74 @@
                     <span class="carousel-control-next-icon" aria-hidden="true"></span>
                     <span class="visually-hidden">Next</span>
                 </button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Tarjetas de noticias -->
+<div class="container mt-5">
+    <div class="row">
+        <div class="col-md-4">
+            <div class="card mb-4" style="border-radius: 10px;">
+                <img src="https://via.placeholder.com/150" class="card-img-top" alt="Noticia 1">
+                <div class="card-body">
+                    <h5 class="card-title">Noticia 1</h5>
+                    <p class="card-text">Descripción breve de la noticia 1.</p>
+                    <a href="#" class="btn btn-danger" style="border-radius: 10px;">Leer más</a>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-4">
+            <div class="card mb-4" style="border-radius: 10px;">
+                <img src="https://via.placeholder.com/150" class="card-img-top" alt="Noticia 2">
+                <div class="card-body">
+                    <h5 class="card-title">Noticia 2</h5>
+                    <p class="card-text">Descripción breve de la noticia 2.</p>
+                    <a href="#" class="btn btn-danger" style="border-radius: 10px;">Leer más</a>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-4">
+            <div class="card mb-4" style="border-radius: 10px;">
+                <img src="https://via.placeholder.com/150" class="card-img-top" alt="Noticia 3">
+                <div class="card-body">
+                    <h5 class="card-title">Noticia 3</h5>
+                    <p class="card-text">Descripción breve de la noticia 3.</p>
+                    <a href="#" class="btn btn-danger" style="border-radius: 10px;">Leer más</a>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-4">
+            <div class="card mb-4" style="border-radius: 10px;">
+                <img src="https://via.placeholder.com/150" class="card-img-top" alt="Noticia 4">
+                <div class="card-body">
+                    <h5 class="card-title">Noticia 4</h5>
+                    <p class="card-text">Descripción breve de la noticia 4.</p>
+                    <a href="#" class="btn btn-danger" style="border-radius: 10px;">Leer más</a>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-4">
+            <div class="card mb-4" style="border-radius: 10px;">
+                <img src="https://via.placeholder.com/150" class="card-img-top" alt="Noticia 5">
+                <div class="card-body">
+                    <h5 class="card-title">Noticia 5</h5>
+                    <p class="card-text">Descripción breve de la noticia 5.</p>
+                    <a href="#" class="btn btn-danger" style="border-radius: 10px;">Leer más</a>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-4">
+            <div class="card mb-4" style="border-radius: 10px;">
+                <img src="https://via.placeholder.com/150" class="card-img-top" alt="Noticia 6">
+                <div class="card-body">
+                    <h5 class="card-title">Noticia 6</h5>
+                    <p class="card-text">Descripción breve de la noticia 6.</p>
+                    <a href="#" class="btn btn-danger" style="border-radius: 10px;">Leer más</a>
+                </div>
             </div>
         </div>
     </div>

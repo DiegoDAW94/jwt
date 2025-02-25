@@ -1,32 +1,57 @@
 import { Injectable } from '@angular/core';
-import { Observable } from 'rxjs';
 import { HttpClient } from '@angular/common/http';
+import { Observable } from 'rxjs';
+import { map } from 'rxjs/operators';
+import { TokenService } from './token.service';
 
 // User interface
 export class User {
-name!: String;
-email!: String;
-password!: String;
-password_confirmation!: String;
+  name!: String;
+  email!: String;
+  password!: String;
+  password_confirmation!: String;
 }
 
 @Injectable({
   providedIn: 'root'
 })
-
 export class AuthService {
-  constructor(private http: HttpClient) {}
+  private apiUrl = 'http://127.0.0.1:8000/api'; // Cambia esto a la URL de tu backend
+
+  constructor(private http: HttpClient, private tokenService: TokenService) {}
+
   // User registration
   register(user: User): Observable<any> {
-  return this.http.post('http://127.0.0.1:8000/api/register', user);
+    return this.http.post(`${this.apiUrl}/register`, user);
   }
+
   // Login
   signin(user: User): Observable<any> {
-  return this.http.post<any>('http://127.0.0.1:8000/api/login',
-  user);
+    return this.http.post<any>(`${this.apiUrl}/login`, user);
   }
+
   // Access user profile
   profileUser(): Observable<any> {
-  return this.http.get('http://127.0.0.1:8000/api/me');
+    return this.http.get(`${this.apiUrl}/me`);
+  }
+
+  // Check if user is logged in
+  isLoggedIn(): Observable<boolean> {
+    return this.http.get<{ loggedIn: boolean }>(`${this.apiUrl}/auth/status`).pipe(
+      map(response => response.loggedIn)
+    );
+  }
+  
+  getUser(): Observable<any> {
+    return this.http.get<any>(`${this.apiUrl}/user`);
+  }
+
+  // Logout the user
+  logout(): Observable<void> {
+    return this.http.post<void>(`${this.apiUrl}/logout`, {}).pipe(
+      map(() => {
+        this.tokenService.removeToken();
+      })
+    );
   }
 }

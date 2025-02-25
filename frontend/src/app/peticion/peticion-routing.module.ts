@@ -6,10 +6,10 @@ import { IndexComponent } from './index/index.component';
 import { ViewComponent } from './view/view.component';
 
 const routes: Routes = [
-  { path: 'peticiones', component: IndexComponent },
-  { path: 'peticiones/create', component: CreateComponent },
-  { path: 'peticiones/edit/:id', component: EditComponent },
-  { path: 'peticiones/view/:id', component: ViewComponent },
+  { path: 'create', component: CreateComponent },
+  { path: 'edit/:id', component: EditComponent },
+  { path: 'view/:id', component: ViewComponent }, // Añadir esta línea
+  { path: '', component: IndexComponent }
 ];
 
 @NgModule({

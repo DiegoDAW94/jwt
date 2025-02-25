@@ -40,15 +40,15 @@ class PeticioneController extends Controller
         }
     }
 
-    public function show(Request $request, $id)
-    {
-        try{
-            $peticion = Peticione::where('user_id', $id)->get();
-            return $peticion;
-        }catch (\Exception $exception){
-            return response()->json(['error'=>$exception->getMessage()]);
-        }
+    public function show($id)
+{
+    try {
+        $peticion = Peticione::with('categoria', 'user')->findOrFail($id);
+        return response()->json($peticion);
+    } catch (\Exception $exception) {
+        return response()->json(['error' => $exception->getMessage()]);
     }
+}
 
     public function update(Request $request, $id)
     {

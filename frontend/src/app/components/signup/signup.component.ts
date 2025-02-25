@@ -7,7 +7,6 @@ import { FormBuilder, FormGroup } from '@angular/forms';
   templateUrl: './signup.component.html',
   styleUrls: ['./signup.component.css'],
 })
-
 export class SignupComponent implements OnInit {
   registerForm: FormGroup;
   errors: any = null;
@@ -34,7 +33,8 @@ export class SignupComponent implements OnInit {
       },
       () => {
         this.registerForm.reset();
-        this.router.navigate(['login']);
+        //this.router.navigate(['login']);
+        this.router.navigate(['']);
       }
     );
   }
