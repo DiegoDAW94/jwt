@@ -1,0 +1,8 @@
+<div class="container">
+  <h1>Lista de Peticiones</h1>
+  <ul class="list-group">
+    <li *ngFor="let peticion of peticiones" class="list-group-item">
+      <a [routerLink]="['/peticiones/view', peticion.id]">{{ peticion.titulo }}</a> - {{ peticion.descripcion }}
+    </li>
+  </ul>
+</div>

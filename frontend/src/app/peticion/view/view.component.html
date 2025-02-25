@@ -1,0 +1,9 @@
+<div class="container">
+    <h1>Detalles de la Petición</h1>
+    <div *ngIf="peticion">
+      <h2>{{ peticion.titulo }}</h2>
+      <p><strong>Descripción:</strong> {{ peticion.descripcion }}</p>
+      <p><strong>Destinatario:</strong> {{ peticion.destinatario }}</p>
+      <p><strong>Categoría ID:</strong> {{ peticion.categoria_id }}</p>
+    </div>
+  </div>
