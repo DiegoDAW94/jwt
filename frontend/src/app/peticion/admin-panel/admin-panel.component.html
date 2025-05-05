@@ -1,0 +1,51 @@
+<div class="container mt-5">
+    <h2>Panel de Administración</h2>
+    <table class="table table-bordered">
+      <thead>
+        <tr>
+          <th>ID</th>
+          <th>Título</th>
+          <th>Descripción</th>
+          <th>Destinatario</th>
+          <th>Firmantes</th>
+          <th>Estado</th>
+          <th>Acciones</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let peticion of peticiones">
+          <td>{{ peticion.id }}</td>
+          <td>{{ peticion.titulo }}</td>
+          <td>{{ peticion.descripcion }}</td>
+          <td>{{ peticion.destinatario }}</td>
+          <td>{{ peticion.firmantes }}</td>
+          <td>{{ peticion.estado }}</td>
+          <td>
+            <button class="btn btn-primary btn-sm" (click)="viewPetition(peticion.id)">Ver</button>
+            <button class="btn btn-warning btn-sm" (click)="changeState(peticion.id)">Cambiar Estado</button>
+            <button class="btn btn-info btn-sm" (click)="editPetition(peticion.id)">Editar</button>
+            <button class="btn btn-danger btn-sm" (click)="deletePetition(peticion.id)">Eliminar</button>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  
+    <!-- Controles de paginación -->
+    <nav aria-label="Page navigation">
+      <ul class="pagination justify-content-center">
+        <li class="page-item" [class.disabled]="currentPage === 1">
+          <button class="page-link" (click)="goToPage(currentPage - 1)">Anterior</button>
+        </li>
+        <li
+          class="page-item"
+          *ngFor="let page of [].constructor(totalPages); let i = index"
+          [class.active]="currentPage === i + 1"
+        >
+          <button class="page-link" (click)="goToPage(i + 1)">{{ i + 1 }}</button>
+        </li>
+        <li class="page-item" [class.disabled]="currentPage === totalPages">
+          <button class="page-link" (click)="goToPage(currentPage + 1)">Siguiente</button>
+        </li>
+      </ul>
+    </nav>
+  </div>

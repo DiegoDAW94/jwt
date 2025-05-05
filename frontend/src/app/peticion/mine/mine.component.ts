@@ -3,11 +3,11 @@ import { PeticionService } from '../peticion.service';
 import { Peticion } from '../peticion';
 
 @Component({
-  selector: 'app-index',
-  templateUrl: './index.component.html',
-  styleUrls: ['./index.component.css']
+  selector: 'app-mine',
+  templateUrl: './mine.component.html',
+  styleUrls: ['./mine.component.css']
 })
-export class IndexComponent implements OnInit {
+export class MineComponent implements OnInit {
   peticiones: Peticion[] = [];
   currentPage: number = 1;
   totalPages: number = 0;
@@ -19,14 +19,14 @@ export class IndexComponent implements OnInit {
   }
 
   loadPeticiones(page: number = 1): void {
-    this.peticionService.getPeticiones(page).subscribe(
+    this.peticionService.getMyPeticiones(page).subscribe(
       (data) => {
         this.peticiones = data.data; // Los datos de la página actual
         this.currentPage = data.current_page;
         this.totalPages = data.last_page;
       },
       (error) => {
-        console.error('Error al cargar las peticiones:', error);
+        console.error('Error al cargar mis peticiones:', error);
       }
     );
   }

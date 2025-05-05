@@ -4,18 +4,20 @@ namespace App\Policies;
 
 use App\Models\Peticione;
 use App\Models\User;
-use Illuminate\Auth\Access\Response;
 
 class PeticionePolicy
 {
-    /*public function before(User $user, string $ability): ?bool
+    /**
+     * Este método se ejecuta antes de cualquier otro método de la política.
+     * Si el usuario es administrador (role_id == 1), se le otorga acceso total.
+     */
+    public function before(User $user, string $ability): ?bool
     {
         if ($user->role_id == 1) {
-            return true; // Admin tiene acceso total
+            return true; // El administrador tiene acceso total
         }
-        return null;
-    }*/
-
+        return null; // Continuar con las verificaciones normales
+    }
 
     /**
      * Determine whether the user can view any models.
@@ -23,7 +25,6 @@ class PeticionePolicy
     public function viewAny(User $user): bool
     {
         return true;
-
     }
 
     /**
@@ -31,7 +32,6 @@ class PeticionePolicy
      */
     public function view(User $user, Peticione $peticione): bool
     {
-        //
         return true;
     }
 
@@ -40,7 +40,6 @@ class PeticionePolicy
      */
     public function create(User $user): bool
     {
-        //
         return true;
     }
 
@@ -49,11 +48,8 @@ class PeticionePolicy
      */
     public function update(User $user, Peticione $peticione): bool
     {
-        //
-        if ($user->role_id==0 && $user->id==$peticione->user_id) {
-            return true;
-        }
-        return false;
+        // Permitir al creador de la petición actualizarla
+        return $user->role_id == 0 && $user->id == $peticione->user_id;
     }
 
     /**
@@ -61,10 +57,8 @@ class PeticionePolicy
      */
     public function delete(User $user, Peticione $peticione): bool
     {
-        if ($user->role_id==0 && $user->id == $peticione->user_id) {
-            return true;
-        }
-        return false;
+        // Permitir al creador de la petición eliminarla
+        return $user->role_id == 0 && $user->id == $peticione->user_id;
     }
 
     /**
@@ -72,10 +66,8 @@ class PeticionePolicy
      */
     public function restore(User $user, Peticione $peticione): bool
     {
-        if ($user->role_id==0 || $user->id==$peticione->user_id) {
-            return true;
-        }
-        return false;
+        // Permitir al creador de la petición restaurarla
+        return $user->role_id == 0 || $user->id == $peticione->user_id;
     }
 
     /**
@@ -83,15 +75,14 @@ class PeticionePolicy
      */
     public function forceDelete(User $user, Peticione $peticione): bool
     {
-        //
         return true;
     }
 
-
-
+    /**
+     * Determine whether the user can change the state of the model.
+     */
     public function cambiarEstado(User $user, Peticione $peticione): bool
     {
         return false;
     }
-
 }

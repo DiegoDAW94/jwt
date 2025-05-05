@@ -12,8 +12,8 @@ export class PeticionService {
   constructor(private http: HttpClient) { }
 
   // Get all peticiones
-  index(): Observable<Peticion[]> {
-    return this.http.get<Peticion[]>(`${this.apiUrl}/peticiones`);
+  getPeticiones(page: number = 1): Observable<any> {
+    return this.http.get(`${this.apiUrl}/peticiones?page=${page}`);
   }
 
   // Get a single peticion by ID
@@ -22,14 +22,21 @@ export class PeticionService {
   }
 
   // Create a new peticion
-  create(peticion: Peticion): Observable<Peticion> {
-    return this.http.post<Peticion>(`${this.apiUrl}/peticiones`, peticion);
+  createPeticion(formData: FormData): Observable<any> {
+    return this.http.post(`${this.apiUrl}/peticiones`, formData);
   }
 
-  // Edit a peticion by ID
-  edit(id: number, peticion: Peticion): Observable<Peticion> {
-    return this.http.put<Peticion>(`${this.apiUrl}/peticiones/${id}`, peticion);
+  testUpdate(data: FormData): Observable<any> {
+    return this.http.post('http://127.0.0.1:8000/api/test-update', data);
   }
+
+  updatePeticion(id: number, data: any): Observable<any> {
+    return this.http.put(`${this.apiUrl}/peticiones/${id}`, data);
+  }
+
+changeState(id: number): Observable<any> {
+  return this.http.put(`${this.apiUrl}/peticiones/estado/${id}`, {});
+}
 
   // Delete a peticion by ID
   delete(id: number): Observable<void> {
@@ -37,7 +44,15 @@ export class PeticionService {
   }
 
   // Sign a peticion by ID
-  sign(id: number): Observable<void> {
-    return this.http.put<void>(`${this.apiUrl}/peticiones/firmar/${id}`, {});
+  sign(id: number): Observable<any> {
+    return this.http.put(`${this.apiUrl}/peticiones/firmar/${id}`, {});
+  }
+
+  getSignedPeticiones(page: number = 1): Observable<any> {
+    return this.http.get(`${this.apiUrl}/misfirmas?page=${page}`);
+  }
+
+  getMyPeticiones(page: number = 1): Observable<any> {
+    return this.http.get(`${this.apiUrl}/mispeticiones?page=${page}`);
   }
 }

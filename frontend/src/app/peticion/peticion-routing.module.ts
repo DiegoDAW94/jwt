@@ -5,11 +5,13 @@ import { EditComponent } from './edit/edit.component';
 import { IndexComponent } from './index/index.component';
 import { ViewComponent } from './view/view.component';
 
+
 const routes: Routes = [
   { path: 'create', component: CreateComponent },
   { path: 'edit/:id', component: EditComponent },
   { path: 'view/:id', component: ViewComponent }, // Añadir esta línea
-  { path: '', component: IndexComponent }
+  { path: '', component: IndexComponent },
+  
 ];
 
 @NgModule({

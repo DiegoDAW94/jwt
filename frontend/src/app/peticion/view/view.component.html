@@ -1,5 +1,7 @@
-<div class="auth-wrapper d-flex justify-content-center align-items-center vh-100">
-  <div class="card" style="width: 30rem; border-radius: 10px;">
+<div
+  class="auth-wrapper d-flex justify-content-center align-items-center vh-100"
+>
+  <div class="card" style="width: 30rem; border-radius: 10px">
     <div class="card-header" *ngIf="peticion">
       <h1>{{ peticion.titulo }}</h1>
     </div>
@@ -10,16 +12,47 @@
         <p><strong>Categoría:</strong> {{ peticion.categoria?.nombre }}</p>
         <p><strong>Usuario:</strong> {{ peticion.user?.name }}</p>
         <p><strong>Firmantes:</strong> {{ peticion.firmantes }}</p>
-        <button 
-          class="btn btn-danger btn-block mt-3" 
-          (click)="signPetition()">
+        <p><strong>Estado:</strong> {{ peticion.estado }}</p>
+        <div *ngIf="peticion && peticion.files && peticion.files.length > 0">
+          <h3>Imágenes</h3>
+          <div *ngFor="let file of peticion.files" class="mb-3">
+            <img
+              [src]="file.file_path"
+              alt="{{ file.name }}"
+              class="img-fluid"
+              style="max-width: 300px"
+            />
+          </div>
+        </div>
+        <button class="btn btn-danger btn-block mt-3" (click)="signPetition()">
           Firmar
         </button>
-        <button 
-          *ngIf="loggedIn && user && (user.id === peticion.user_id || user.role_id === 1)" 
-          class="btn btn-dark btn-block mt-3" 
-          style="border-radius: 10px;" 
-          (click)="deletePetition()">
+        <button
+        *ngIf="loggedIn && user && (user.id === peticion.user_id || user.role_id === 1)"
+        class="btn btn-primary btn-block mt-3"
+        style="border-radius: 10px"
+        (click)="editPetition()"
+      >
+        Editar
+      </button>
+      <button
+  *ngIf="loggedIn && user && user.role_id === 1"
+  class="btn btn-warning btn-block mt-3"
+  style="border-radius: 10px"
+  (click)="changeState()"
+>
+  Cambiar Estado
+</button>
+        <button
+          *ngIf="
+            loggedIn &&
+            user &&
+            (user.id === peticion.user_id || user.role_id === 1)
+          "
+          class="btn btn-dark btn-block mt-3"
+          style="border-radius: 10px"
+          (click)="deletePetition()"
+        >
           Eliminar
         </button>
       </div>

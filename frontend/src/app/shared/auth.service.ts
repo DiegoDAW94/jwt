@@ -16,6 +16,7 @@ export class User {
   providedIn: 'root'
 })
 export class AuthService {
+  [x: string]: any;
   private apiUrl = 'http://127.0.0.1:8000/api'; // Cambia esto a la URL de tu backend
 
   constructor(private http: HttpClient, private tokenService: TokenService) {}
@@ -43,15 +44,10 @@ export class AuthService {
   }
   
   getUser(): Observable<any> {
-    return this.http.get<any>(`${this.apiUrl}/user`);
+    return this.http.get(`${this.apiUrl}/me`); // Endpoint para obtener los datos del usuario autenticado
   }
 
-  // Logout the user
-  logout(): Observable<void> {
-    return this.http.post<void>(`${this.apiUrl}/logout`, {}).pipe(
-      map(() => {
-        this.tokenService.removeToken();
-      })
-    );
+  logout(): Observable<any> {
+    return this.http.post(`${this.apiUrl}/logout`, {});
   }
 }
