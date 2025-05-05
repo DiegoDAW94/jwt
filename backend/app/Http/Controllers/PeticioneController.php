@@ -51,18 +51,21 @@ public function show($id)
 }
 
 public function listSigned()
-{
-    try {
-        $user = Auth::user();
-        if (!$user) {
-            return response()->json(['error' => 'Usuario no autenticado'], 401);
+    {
+        try {
+            $user = Auth::user();
+            if (!$user) {
+                return response()->json(['error' => 'Usuario no autenticado'], 401);
+            }
+
+            // Obtener las peticiones firmadas por el usuario autenticado
+            $peticiones = $user->firmas()->with('categoria', 'user')->paginate(10);
+
+            return response()->json($peticiones);
+        } catch (\Exception $exception) {
+            return response()->json(['error' => $exception->getMessage()], 500);
         }
-        $peticiones = $user->firmas()->paginate(10); // 10 elementos por página
-        return response()->json($peticiones);
-    } catch (\Exception $exception) {
-        return response()->json(['error' => $exception->getMessage()], 500);
     }
-}
 
 
 

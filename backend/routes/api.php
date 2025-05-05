@@ -14,7 +14,7 @@ Route::controller(\App\Http\Controllers\PeticioneController::class)->group(funct
     Route::put('peticiones/{id}', 'update')->middleware('auth:api'); // Proteger con JWT
     Route::put('peticiones/estado/{id}', 'cambiarEstado')->middleware('auth:api'); // Proteger con JWT
     Route::post('peticiones', 'store')->middleware('auth:api'); // Proteger con JWT
-    Route::get('misfirmas', 'listSigned')->middleware('auth:api'); // Proteger con JWT
+    Route::get('misfirmas', 'listSigned')->middleware('auth:api'); // Ruta para peticiones firmadas
 });
 
 Route::controller(\App\Http\Controllers\AuthController::class)->group(function () {

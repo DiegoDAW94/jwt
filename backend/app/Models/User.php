@@ -31,9 +31,8 @@ class User extends Authenticatable implements JWTSubject
      */
     public function firmas()
     {
-        return $this->belongsToMany(Peticione::class, 'peticione_user', 'user_id', 'peticione_id')->withTimestamps();
+        return $this->belongsToMany(Peticione::class, 'firmas', 'user_id', 'peticion_id');
     }
-
     protected $hidden = [
         'password',
         'remember_token',

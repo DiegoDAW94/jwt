@@ -1,34 +1,34 @@
 <div class="container mt-4">
-    <h2>Mis Peticiones Firmadas</h2>
-    <div *ngIf="peticiones.length > 0; else noPeticiones">
-      <div *ngFor="let peticion of peticiones" class="card mb-3">
-        <a [routerLink]="['/view', peticion.id]" class="text-decoration-none text-dark">
-          <div class="card-body">
-            <h5 class="card-title">{{ peticion.titulo }}</h5>
-            <p class="card-text"><strong>Descripción:</strong> {{ peticion.descripcion }}</p>
-            <p class="card-text"><strong>Destinatario:</strong> {{ peticion.destinatario }}</p>
-            <p class="card-text"><strong>Firmantes:</strong> {{ peticion.firmantes }}</p>
-            <p class="card-text"><strong>Estado:</strong> {{ peticion.estado }}</p>
-          </div>
-        </a>
-      </div>
-  
-      <!-- Paginación -->
-      <nav>
-        <ul class="pagination justify-content-center">
-          <li class="page-item" [class.disabled]="currentPage === 1">
-            <button class="page-link" (click)="goToPage(currentPage - 1)">Anterior</button>
-          </li>
-          <li class="page-item" *ngFor="let page of [].constructor(totalPages); let i = index" [class.active]="currentPage === i + 1">
-            <button class="page-link" (click)="goToPage(i + 1)">{{ i + 1 }}</button>
-          </li>
-          <li class="page-item" [class.disabled]="currentPage === totalPages">
-            <button class="page-link" (click)="goToPage(currentPage + 1)">Siguiente</button>
-          </li>
-        </ul>
-      </nav>
+  <h2>Mis Peticiones Firmadas</h2>
+  <div *ngIf="peticiones.length > 0; else noPeticiones">
+    <div *ngFor="let peticion of peticiones" class="card mb-3">
+      <a [routerLink]="['/view', peticion.id]" class="text-decoration-none text-dark">
+        <div class="card-body">
+          <h5 class="card-title">{{ peticion.titulo }}</h5>
+          <p class="card-text"><strong>Descripción:</strong> {{ peticion.descripcion }}</p>
+          <p class="card-text"><strong>Destinatario:</strong> {{ peticion.destinatario }}</p>
+          <p class="card-text"><strong>Firmantes:</strong> {{ peticion.firmantes }}</p>
+          <p class="card-text"><strong>Estado:</strong> {{ peticion.estado }}</p>
+        </div>
+      </a>
     </div>
-    <ng-template #noPeticiones>
-      <p>No has firmado ninguna petición.</p>
-    </ng-template>
+
+    <!-- Paginación -->
+    <nav>
+      <ul class="pagination justify-content-center">
+        <li class="page-item" [class.disabled]="currentPage === 1">
+          <button class="page-link" (click)="goToPage(currentPage - 1)">Anterior</button>
+        </li>
+        <li class="page-item" *ngFor="let page of [].constructor(totalPages); let i = index" [class.active]="currentPage === i + 1">
+          <button class="page-link" (click)="goToPage(i + 1)">{{ i + 1 }}</button>
+        </li>
+        <li class="page-item" [class.disabled]="currentPage === totalPages">
+          <button class="page-link" (click)="goToPage(currentPage + 1)">Siguiente</button>
+        </li>
+      </ul>
+    </nav>
   </div>
+  <ng-template #noPeticiones>
+    <p>No has firmado ninguna petición.</p>
+  </ng-template>
+</div>
